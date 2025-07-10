@@ -8,6 +8,8 @@ builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configur
 
 // Add services to the container.
 builder.Services.AddScoped<IPatient, PatientService>();
+builder.Services.AddScoped<IDoctor, DoctorService>();
+builder.Services.AddScoped<IDepartment, DepartmentService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

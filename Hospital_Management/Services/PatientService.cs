@@ -35,6 +35,10 @@ namespace Hospital_Management.Services
         {
             var data = await context.Patients.FindAsync(id);
 
+            if (data == null)
+            {
+                return null;
+            }
             var result = new PatientDTO
             {
                 Name = data.Name,
@@ -45,7 +49,7 @@ namespace Hospital_Management.Services
                 CreatedDate = data.CreatedDate
             };
 
-            return result;
+                return result;
         }
         public async Task<PatientDTO?> AddPatient(PatientDTO patientDTO)
         {
