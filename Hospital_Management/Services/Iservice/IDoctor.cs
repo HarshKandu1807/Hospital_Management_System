@@ -6,8 +6,10 @@ namespace Hospital_Management.Services.Iservice
     {
         Task<List<DoctorDTO>?> GetDoctors();
         Task<DoctorDTO?> GetDoctorById(int id);
-        Task<DoctorDTO?> AddDoctor(DoctorDTO DoctorDTO);
-        Task<DoctorDTO?> UpdateDoctor(DoctorDTO DoctorDTO, int id);
+        Task<DoctorDTO?> AddDoctor(DoctorDTO doctorDTO);
+        Task<PrescriptionDTO?> AddPrescription(PrescriptionDTO prescriptionDTO);
+        Task<DoctorLeaveDTO> AddDoctorLeave(DoctorLeaveDTO doctorLeaveDTO);
+        Task<DoctorDTO?> UpdateDoctor(DoctorDTO doctorDTO, int id);
         Task<bool> DeleteDoctor(int id);
     }
 }

@@ -134,7 +134,7 @@ namespace Hospital_Management.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LeaveId"));
 
-                    b.Property<int>("DocterId")
+                    b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
                     b.Property<int>("DoctorId")
@@ -152,7 +152,7 @@ namespace Hospital_Management.Migrations
 
                     b.HasKey("LeaveId");
 
-                    b.HasIndex("DocterId");
+                    b.HasIndex("DoctorId");
 
                     b.ToTable("DoctorLeaves");
                 });
@@ -296,7 +296,7 @@ namespace Hospital_Management.Migrations
                 {
                     b.HasOne("Hospital_Management.Models.Doctor", "Doctor")
                         .WithMany("DoctorLeave")
-                        .HasForeignKey("DocterId")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

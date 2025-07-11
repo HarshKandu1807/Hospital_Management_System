@@ -74,7 +74,6 @@ namespace Hospital_Management.Migrations
                     LeaveId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DoctorId = table.Column<int>(type: "int", nullable: false),
-                    DocterId = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -83,8 +82,8 @@ namespace Hospital_Management.Migrations
                 {
                     table.PrimaryKey("PK_DoctorLeaves", x => x.LeaveId);
                     table.ForeignKey(
-                        name: "FK_DoctorLeaves_Doctors_DocterId",
-                        column: x => x.DocterId,
+                        name: "FK_DoctorLeaves_Doctors_DoctorId",
+                        column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "DoctorId",
                         onDelete: ReferentialAction.Cascade);
@@ -194,9 +193,9 @@ namespace Hospital_Management.Migrations
                 filter: "[PrescriptionId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DoctorLeaves_DocterId",
+                name: "IX_DoctorLeaves_DoctorId",
                 table: "DoctorLeaves",
-                column: "DocterId");
+                column: "DoctorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doctors_DepartmentId",

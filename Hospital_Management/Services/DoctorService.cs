@@ -83,6 +83,47 @@ namespace Hospital_Management.Services
                 return null;
             }
         }
+
+        public async Task<PrescriptionDTO?> AddPrescription(PrescriptionDTO prescriptionDTO)
+        {
+            var data = new Prescription
+            {
+                PrescriptionName = prescriptionDTO.PrescriptionName,
+                DoctorId=prescriptionDTO.DoctorId,
+                PatientId=prescriptionDTO.PatientId,
+                AppointmentId=prescriptionDTO.AppointmentId
+            };
+            await context.Prescriptions.AddAsync(data);
+            return new PrescriptionDTO
+            {
+                PrescriptionName = data.PrescriptionName,
+                DoctorId = data.DoctorId,
+                PatientId = data.PatientId,
+                AppointmentId = data.AppointmentId
+            };
+        }
+
+        public async Task<DoctorLeaveDTO> AddDoctorLeave(DoctorLeaveDTO doctorLeaveDTO)
+        {
+            var data = new DoctorLeave
+            {
+                DoctorId = doctorLeaveDTO.DoctorId,
+                StartDate = doctorLeaveDTO.StartDate,
+                EndDate = doctorLeaveDTO.EndDate,
+                Reason = doctorLeaveDTO.Reason
+            };
+            await context.DoctorLeaves.AddAsync(data);
+            await context.SaveChangesAsync();
+            return new DoctorLeaveDTO
+            {
+                DoctorId = data.DoctorId,
+                StartDate=data.StartDate,
+                EndDate=data.EndDate,
+                Reason=data.Reason
+            };
+
+        }
+
         public async Task<DoctorDTO?> UpdateDoctor(DoctorDTO DoctorDTO, int id)
         {
             var data = await context.Doctors.FindAsync(id);

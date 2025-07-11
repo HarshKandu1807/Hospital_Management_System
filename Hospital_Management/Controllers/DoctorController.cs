@@ -42,18 +42,40 @@ namespace Hospital_Management.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddDoctor(DoctorDTO DoctorDTO)
+        [HttpPost("doctor")]
+        public async Task<IActionResult> AddDoctor(DoctorDTO doctorDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var data = await Doctor.AddDoctor(DoctorDTO);
+            var data = await Doctor.AddDoctor(doctorDTO);
             if (data == null)
             {
                 return BadRequest("Data Already Exist");
             }
+            return Ok(data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPrescription(PrescriptionDTO prescriptionDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var data = await Doctor.AddPrescription(prescriptionDTO);
+            return Ok(data);
+        }
+
+        [HttpPost("doctor/leave")]
+        public async Task<IActionResult> AddDoctorLeave(DoctorLeaveDTO doctorLeaveDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var data = await Doctor.AddDoctorLeave(doctorLeaveDTO);
             return Ok(data);
         }
 
